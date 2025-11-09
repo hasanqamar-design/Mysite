@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NetCheck — Real-time Network Tester</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Fast, real-time network speed & latency tester" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">⤓⤒</div>
+      <div>
+        <h1>NetCheck</h1>
+        <p>Real-time Speed · Latency · Upload · Secure</p>
+      </div>
+    </div>
+    <div class="controls">
+      <input id="serverUrl" type="text" value="" placeholder="Backend URL (e.g. https://example.com)" />
+      <button id="setServer">Set</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel stats">
+      <div class="big-metrics">
+        <div class="metric">
+          <div class="label">Download</div>
+          <div id="downloadValue" class="value">— Mbps</div>
+        </div>
+        <div class="metric">
+          <div class="label">Upload</div>
+          <div id="uploadValue" class="value">— Mbps</div>
+        </div>
+        <div class="metric">
+          <div class="label">Ping</div>
+          <div id="pingValue" class="value">— ms</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="startBtn" class="primary">Start Test</button>
+        <button id="stopBtn" class="secondary" disabled>Stop</button>
+      </div>
+    </section>
+
+    <section class="panel graph">
+      <h2>Real-time Graphs</h2>
+      <canvas id="speedChart" height="240"></canvas>
+    </section>
+
+    <section class="panel details">
+      <h3>Test Details</h3>
+      <ul id="detailList">
+        <li>Server: <span id="detailServer">Not set</span></li>
+        <li>Concurrent workers: <span id="detailWorkers">6</span></li>
+        <li>Download chunks: <span id="detailChunks">6 × 2MB</span></li>
+      </ul>
+    </section>
+
+    <section class="panel note">
+      <h4>Notes</h4>
+      <p>
+        For accurate results use a backend (Flask server included). Tests use parallel downloads/uploads and a websocket ping.
+        Mobile data/ISP throttling may affect results. To host backend, run Python server in <code>backend/main.py</code>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made by Hasan • Use responsibly • No third-party branding</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
